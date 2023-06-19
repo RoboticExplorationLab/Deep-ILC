@@ -1,6 +1,6 @@
 # Deep off-policy ILC
 
-This repository contains the implementation for the paper [Deep off-policy Iterative Learning Control](https://short-horizon-actor-critic.github.io/) (L4DC 2023).
+This repository contains the implementation for the paper [Deep off-policy Iterative Learning Control](https://openreview.net/forum?id=Bi0E3lbvnU) (L4DC 2023).
 
 The paper proposes an update equation for the value-function gradients to speed up actor critic methods in reinforcement learning. This update is inspired by iterative learning control (ILC) approaches that use approximate simulator gradients to speed up optimization. The value-gradient update leads to a significant improvement in sample efficiency and sometimes better performance both when learning from scratch or fine-tuning a pre-trained policy in a new environment. We add this update to soft actor-critic (SAC) and demonstrate improvements.
 
@@ -9,7 +9,7 @@ The paper proposes an update equation for the value-function gradients to speed 
 - In the project folder, create a virtual environment in Anaconda:
 
   ```
-  conda env create -f deepilc_conda.yml
+  conda env create -f deepilc.yml
   conda activate deepilc
   ```
 
@@ -23,17 +23,24 @@ The paper proposes an update equation for the value-function gradients to speed 
 
 ## Training
 
-Running the following command to train Ant with SHAC.
+Running the following command to train rexquadrotor with VG-SAC.
+
 ```
-python main.py
+python main.py --env-name rexquadrotor --jacobian --cuda 
 ```
 
-Use the following hyperparameters to train the model with different settings:
+Use the following flags to train the model with different settings:
+--env-name : {cartpole, acrobot, rexquadrotor, halfcheetah, hopper, DmcCheetah, DmcHopper}
+--jacobian : Train with approximate model jacobians
+--pretrain : Pretrain the model in the approximate model(default: False)
+--pretrain_jacobian : Pretrain the model in the approximate model with model jacobians (default: False)
+--zeroth : Train with zeroth order jacobians from the approximate model (default: False)
+
 
 ## Citation
 
 If you find our paper or code is useful, please consider citing:
-```kvk
+```
   @inproceedings{
 	gurumurthy2023valuegradien,
 	title={Deep Off-policy Iterative Learning Control},

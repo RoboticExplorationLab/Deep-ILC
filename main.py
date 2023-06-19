@@ -61,16 +61,26 @@ parser.add_argument('--replay_size', type=int, default=1000000, metavar='N',
                     help='size of replay buffer (default: 10000000)')
 parser.add_argument('--cuda', action="store_true",
                     help='run on CUDA (default: False)')
-parser.add_argument('--eval_interval', type=int, default=40)
-parser.add_argument('--exp_name', type=str, default='scratch_training_test')
-parser.add_argument('--offline', action="store_true")
-parser.add_argument('--jacobian', action="store_true")
-parser.add_argument('--pretrain', action="store_true")
-parser.add_argument('--pretrain_jacobian', action="store_true")
-parser.add_argument('--load', action="store_true")
-parser.add_argument('--test', action="store_true")
-parser.add_argument('--zeroth', action="store_true")
-parser.add_argument('--jac_s_coeff', type=float, default=1.0)
+parser.add_argument('--eval_interval', type=int, default=40, 
+                    help='evaluation interval (default: 40 episodes)')
+parser.add_argument('--exp_name', type=str, default='scratch_training_test',
+                    help='name of the experiment')
+parser.add_argument('--offline', action="store_true",
+                    help='Train with offline data (i.e without collecting any experiences) (default: False)')
+parser.add_argument('--jacobian', action="store_true",
+                    help='Train with approximate model jacobians (default: False)')
+parser.add_argument('--pretrain', action="store_true",
+                    help='Pretrain the model in the approximate model(default: False)')
+parser.add_argument('--pretrain_jacobian', action="store_true",
+                    help='Pretrain the model in the approximate model with model jacobians (default: False)')
+parser.add_argument('--load', action="store_true",
+                    help='Load the model saved with exp-name (default: False)')
+parser.add_argument('--test', action="store_true",
+                    help='Run without logging or saving (default: False)')
+parser.add_argument('--zeroth', action="store_true",
+                    help='Train with zeroth order jacobians from the approximate model (default: False)')
+parser.add_argument('--jac_s_coeff', type=float, default=1.0,
+                    help='Coefficient for the state jacobian loss (default: 1.0)')
 args = parser.parse_args()
 
 args.dflex_env = False
