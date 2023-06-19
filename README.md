@@ -30,12 +30,13 @@ python main.py --env-name rexquadrotor --jacobian --cuda
 ```
 
 Use the following flags to train the model with different settings:
+```
 --env-name : {cartpole, acrobot, rexquadrotor, halfcheetah, hopper, DmcCheetah, DmcHopper}
 --jacobian : Train with approximate model jacobians
 --pretrain : Pretrain the model in the approximate model(default: False)
 --pretrain_jacobian : Pretrain the model in the approximate model with model jacobians (default: False)
 --zeroth : Train with zeroth order jacobians from the approximate model (default: False)
-
+```
 
 ## Citation
 
